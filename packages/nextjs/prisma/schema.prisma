@@ -11,80 +11,110 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  firstName String
-  lastName  String?
-  profilePhoto			String
-  pronoun	Pronoun
-  language  Language
-  country   Country
-  twitter   String?
-  github    String?
-  telegram  String?
-  linkedin  String?
-  lens      String?
-  ens       String?
-  wallet    String?
-  portfolio String?
-  skill     Skill[]
-  blockchainLvl			Web3Level
-  proggrammingLangs			ProggrammingLang[]
-  tools     Tool[]
-  yearsOfExperience		Int
-  poaps     String?
+  id                Int                @id @default(autoincrement())
+  createdAt         DateTime           @default(now())
+  firstName         String
+  lastName          String?
+  profilePhoto      String
+  pronoun           Pronoun
+  language          Language
+  country           Country
+  twitter           String?
+  github            String?
+  telegram          String?
+  linkedin          String?
+  lens              String?
+  ens               String?
+  wallet            String?
+  portfolio         String?
+  skill             Skill[]
+  blockchainLvl     Web3Level
+  proggrammingLangs ProggrammingLang[]
+  tools             Tool[]
+  yearsOfExperience Int
+  poaps             String?
+  Team              Team?              @relation(fields: [teamId], references: [id])
+  teamId            Int?
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  code        Int
+  name        Int
+  contractAdd String
+  poap        String
+}
+
+model Team {
+  id              Int        @id @default(autoincrement())
+  createdAt       DateTime   @default(now())
+  name            String
+  description     String
+  users           User[]
+  repo            String
+  requestedSkills Skill[]
+  likes           Skill[]
+  prizes          Protocol[]
 }
 
 enum Pronoun {
-	He
-	She
+  He
+  She
 }
 
 enum Language {
-	English
-	Spanish
-	French
+  English
+  Spanish
+  French
 }
 
 enum Country {
-	Canada
-	USA
-	Mexico
+  Canada
+  USA
+  Mexico
 }
 
 enum Skill {
-	Fullstack
-	Backend
-	Frontend
-	UXUI
-	Designer
-	ProductManager
+  Fullstack
+  Backend
+  Frontend
+  UXUI
+  Designer
+  ProductManager
 }
 
 enum Web3Level {
-	Begginer
-	Intermediate
-	Advanced
-	Vitalik
+  Begginer
+  Intermediate
+  Advanced
+  Vitalik
 }
 
 enum ProggrammingLang {
-	JavaScript
-	TypeScript
-	Java
-	CSharp
-	Cpp
-	C
-	Python
-	Rust
-	Go
-	Solidity
-} 
+  JavaScript
+  TypeScript
+  Java
+  CSharp
+  Cpp
+  C
+  Python
+  Rust
+  Go
+  Solidity
+}
 
 enum Tool {
-	Illustrator
-	Photoshop
-	Notion
-	Canva
-	Figma
+  Illustrator
+  Photoshop
+  Notion
+  Canva
+  Figma
+}
+
+enum Protocol {
+  Polygon
+  Gnosis
+  Hyperline
+  AirStack
 }
