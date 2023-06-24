@@ -9,8 +9,10 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { configureChains } from "wagmi";
 import * as chains from "wagmi/chains";
+// import { InjectedConnector } from "wagmi/connectors/injected";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+// import Web3AuthConnectorInstance from "~~/lib/web3auth";
 import scaffoldConfig from "~~/scaffold.config";
 import { burnerWalletConfig } from "~~/services/web3/wagmi-burner/burnerWalletConfig";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
@@ -52,6 +54,8 @@ const wallets = [
   braveWallet({ chains: appChains.chains }),
   coinbaseWallet({ appName: "scaffold-eth-2", chains: appChains.chains }),
   rainbowWallet({ chains: appChains.chains }),
+  // Web3AuthConnectorInstance(appChains.chains),
+  // new InjectedConnector({ chains: appChains.chains }),
 ];
 
 /**

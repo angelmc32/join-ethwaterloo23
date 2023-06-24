@@ -9,7 +9,9 @@ import { WagmiConfig } from "wagmi";
 import { Footer } from "~~/components/Footer";
 import Header from "~~/components/Header";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
+import { initSafeAuthKit } from "~~/config/SafeAuthKit";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
+import { AccountAbstractionProvider } from "~~/lib/accountAbstractionContext";
 import { useGlobalState } from "~~/services/store/store";
 import { wagmiClient } from "~~/services/web3/wagmiClient";
 import { appChains } from "~~/services/web3/wagmiConnectors";
@@ -32,6 +34,12 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
     setIsDarkTheme(isDarkMode);
   }, [isDarkMode]);
 
+  useEffect(() => {
+    initSafeAuthKit()
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
+  });
+
   return (
     <WagmiConfig client={wagmiClient}>
       <NextNProgress />
@@ -40,14 +48,16 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
         avatar={BlockieAvatar}
         theme={isDarkTheme ? darkTheme() : lightTheme()}
       >
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="relative flex flex-col flex-1 min-h-[calc(100vh-56px)]">
-            <Component {...pageProps} />
-          </main>
-          <Footer />
-        </div>
-        <Toaster />
+        <AccountAbstractionProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="relative flex flex-col flex-1 min-h-[calc(100vh-56px)]">
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </div>
+          <Toaster />
+        </AccountAbstractionProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

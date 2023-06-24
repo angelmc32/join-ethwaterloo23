@@ -2,6 +2,7 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { MetaHeader } from "~~/components/MetaHeader";
+import Web3LoginButton from "~~/components/auth/Web3LoginButton";
 
 const Home: NextPage = () => {
   return (
@@ -63,9 +64,7 @@ const Home: NextPage = () => {
                   >
                     Get started
                   </Link>
-                  <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                    Live demo <span aria-hidden="true">→</span>
-                  </Link>
+                  <Web3LoginButton />
                 </div>
               </div>
               <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
