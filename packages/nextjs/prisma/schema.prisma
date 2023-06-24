@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  firstName String
+  lastName  String?
+  profilePhoto			String
+  pronoun	Pronoun
+  language  Language
+  country   Country
+  twitter   String?
+  github    String?
+  telegram  String?
+  linkedin  String?
+  lens      String?
+  ens       String?
+  wallet    String?
+  portfolio String?
+  skill     Skill[]
+  blockchainLvl			Web3Level
+  proggrammingLangs			ProggrammingLang[]
+  tools     Tool[]
+  yearsOfExperience		Int
+  poaps     String?
+}
+
+enum Pronoun {
+	He
+	She
+}
+
+enum Language {
+	English
+	Spanish
+	French
+}
+
+enum Country {
+	Canada
+	USA
+	Mexico
+}
+
+enum Skill {
+	Fullstack
+	Backend
+	Frontend
+	UXUI
+	Designer
+	ProductManager
+}
+
+enum Web3Level {
+	Begginer
+	Intermediate
+	Advanced
+	Vitalik
+}
+
+enum ProggrammingLang {
+	JavaScript
+	TypeScript
+	Java
+	CSharp
+	Cpp
+	C
+	Python
+	Rust
+	Go
+	Solidity
+} 
+
+enum Tool {
+	Illustrator
+	Photoshop
+	Notion
+	Canva
+	Figma
+}
