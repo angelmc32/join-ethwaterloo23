@@ -2,13 +2,13 @@
 // ========================================================
 import { type GetServerSidePropsContext } from "next";
 import { type DefaultSession, type NextAuthOptions, type Session, getServerSession } from "next-auth";
-// (Will add back)
-// import { prisma } from "~/server/db";
 // SIWE Integration
 import type { CtxOrReq } from "next-auth/client/_utils";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getCsrfToken } from "next-auth/react";
 import { SiweMessage } from "siwe";
+// (Will add back)
+import { prisma } from "~~/server/db";
 
 // Types
 // ========================================================
@@ -155,8 +155,36 @@ export const authOptions: (ctxReq: CtxOrReq) => NextAuthOptions = ({ req }) => (
           if (fields.nonce !== nonce) {
             return null;
           }
+
+          // Check if user exists
+          let user = await prisma.user.findUnique({
+            where: {
+              address: fields.address,
+            },
+          });
+          // Create new user if doesn't exist
+          if (!user) {
+            user = await prisma.user.create({
+              data: {
+                address: fields.address,
+              },
+            });
+            // create account
+            await prisma.account.create({
+              data: {
+                userId: user.id,
+                type: "credentials",
+                provider: "Ethereum",
+                providerAccountId: fields.address,
+              },
+            });
+          }
+
           return {
-            id: fields.address,
+            // Pass user id instead of address
+            // id: fields.address
+            id: user.id,
+            address: user.address,
           };
         } catch (error) {
           // Uncomment or add logging if needed

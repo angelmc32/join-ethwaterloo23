@@ -39,11 +39,12 @@ const ConnectAndSiweButton: React.FC = () => {
       const signature = await signMessageAsync({
         message: message.prepareMessage(),
       });
-      signIn("credentials", {
+      const res = await signIn("credentials", {
         message: JSON.stringify(message),
         redirect: false,
         signature,
       });
+      console.log(res);
     } catch (error) {
       window.alert(error);
     }
@@ -64,6 +65,10 @@ const ConnectAndSiweButton: React.FC = () => {
   useEffect(() => {
     setShowConnection(true);
   }, []);
+
+  useEffect(() => {
+    console.log(sessionData);
+  }, [sessionData]);
 
   // Render
   return (
