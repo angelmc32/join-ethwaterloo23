@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaucetButton, RainbowKitCustomConnectButton } from "./scaffold-eth";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Events", href: "#" },
+  { name: "Community", href: "#" },
+  { name: "Projects", href: "#" },
 ];
 
 const Header = () => {
@@ -41,9 +41,15 @@ const Header = () => {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <RainbowKitCustomConnectButton />
+          {/* <FaucetButton /> */}
+          {/*
           <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+                Log in <span aria-hidden="true">&rarr;</span>
+              </Link>
+          */}
+          {/* <div className="navbar-end flex-grow mr-4"> */}
+          {/* </div> */}
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -76,6 +82,7 @@ const Header = () => {
                   </Link>
                 ))}
               </div>
+              {/*
               <div className="py-6">
                 <Link
                   href="#"
@@ -83,6 +90,11 @@ const Header = () => {
                 >
                   Log in
                 </Link>
+              </div>
+			  */}
+              <div className="navbar-end flex-grow mr-4">
+                <RainbowKitCustomConnectButton />
+                <FaucetButton />
               </div>
             </div>
           </div>
