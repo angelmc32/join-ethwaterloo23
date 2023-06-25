@@ -17,6 +17,7 @@ model User {
   firstName         String?
   lastName          String?
   profilePhoto      String?
+  role              Role?
   pronoun           Pronoun?
   language          Language?
   country           Country?
@@ -28,7 +29,8 @@ model User {
   ens               String?
   address           String?            @unique
   portfolio         String?
-  skill             Skill[]
+  skills            String[]
+  interests         String[]
   blockchainLvl     Web3Level?
   programmingLangs  ProgrammingLang[]
   tools             Tool[]
@@ -75,6 +77,12 @@ model Team {
   requestedSkills Skill[]
   likes           Skill[]
   prizes          Protocol[]
+}
+
+enum Role {
+  Project
+  Designer
+  Developer
 }
 
 enum Pronoun {

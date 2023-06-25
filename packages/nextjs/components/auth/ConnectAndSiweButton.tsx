@@ -41,7 +41,8 @@ const ConnectAndSiweButton: React.FC = () => {
       });
       await signIn("credentials", {
         message: JSON.stringify(message),
-        redirect: false,
+        callbackUrl: "/dashboard",
+        redirect: true,
         signature,
       });
     } catch (error) {
@@ -91,7 +92,7 @@ const ConnectAndSiweButton: React.FC = () => {
           ) : null}
         </div>
       ) : null}
-      {showConnection && !isConnected ? (
+      {showConnection && !sessionData && !isConnected ? (
         <div className="text-center">
           <button
             type="button"
