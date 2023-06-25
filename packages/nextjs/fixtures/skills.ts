@@ -1,0 +1,15 @@
+export default [
+  "Frontend",
+  "Backend",
+  "Fullstack",
+  "JavaScript",
+  "TypeScript",
+  "Rust",
+  "Go",
+  "C/C++",
+  "Python",
+  "AI",
+  "Illustrator",
+  "Figma",
+  "Photoshop",
+];
