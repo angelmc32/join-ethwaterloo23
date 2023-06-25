@@ -7,84 +7,133 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:wEjkTiHi20KJYu3A@db.lizqpuabmgilhuvgruen.supabase.co:5432/postgres"
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  firstName String
-  lastName  String?
-  profilePhoto			String
-  pronoun	Pronoun
-  language  Language
-  country   Country
-  twitter   String?
-  github    String?
-  telegram  String?
-  linkedin  String?
-  lens      String?
-  ens       String?
-  wallet    String?
-  portfolio String?
-  skill     Skill[]
-  blockchainLvl			Web3Level
-  proggrammingLangs			ProggrammingLang[]
-  tools     Tool[]
-  yearsOfExperience		Int
-  poaps     String?
+  id                String             @id @default(cuid())
+  createdAt         DateTime           @default(now())
+  accounts          Account[]
+  firstName         String?
+  lastName          String?
+  profilePhoto      String?
+  pronoun           Pronoun?
+  language          Language?
+  country           Country?
+  twitter           String?
+  github            String?
+  telegram          String?
+  linkedin          String?
+  lens              String?
+  ens               String?
+  address           String?            @unique
+  portfolio         String?
+  skill             Skill[]
+  blockchainLvl     Web3Level?
+  programmingLangs  ProgrammingLang[]
+  tools             Tool[]
+  yearsOfExperience Int?
+  poaps             String?
+  Team              Team?              @relation(fields: [teamId], references: [id])
+  teamId            Int?
+}
+
+model Account {
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String? // @db.Text
+    access_token      String? // @db.Text
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String? // @db.Text
+    session_state     String?
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  code        Int
+  name        Int
+  contractAdd String
+  poap        String
+}
+
+model Team {
+  id              Int        @id @default(autoincrement())
+  createdAt       DateTime   @default(now())
+  name            String
+  description     String
+  users           User[]
+  repo            String
+  requestedSkills Skill[]
+  likes           Skill[]
+  prizes          Protocol[]
 }
 
 enum Pronoun {
-	He
-	She
+  He
+  She
 }
 
 enum Language {
-	English
-	Spanish
-	French
+  English
+  Spanish
+  French
 }
 
 enum Country {
-	Canada
-	USA
-	Mexico
+  Canada
+  USA
+  Mexico
 }
 
 enum Skill {
-	Fullstack
-	Backend
-	Frontend
-	UXUI
-	Designer
-	ProductManager
+  Fullstack
+  Backend
+  Frontend
+  UXUI
+  Designer
+  ProductManager
 }
 
 enum Web3Level {
-	Begginer
-	Intermediate
-	Advanced
-	Vitalik
+  Begginer
+  Intermediate
+  Advanced
+  Vitalik
 }
 
-enum ProggrammingLang {
-	JavaScript
-	TypeScript
-	Java
-	CSharp
-	Cpp
-	C
-	Python
-	Rust
-	Go
-	Solidity
-} 
+enum ProgrammingLang {
+  JavaScript
+  TypeScript
+  Java
+  CSharp
+  Cpp
+  C
+  Python
+  Rust
+  Go
+  Solidity
+}
 
 enum Tool {
-	Illustrator
-	Photoshop
-	Notion
-	Canva
-	Figma
+  Illustrator
+  Photoshop
+  Notion
+  Canva
+  Figma
+}
+
+enum Protocol {
+  Polygon
+  Gnosis
+  Hyperline
+  AirStack
 }

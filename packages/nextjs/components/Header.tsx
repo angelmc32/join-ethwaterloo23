@@ -1,9 +1,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaucetButton, RainbowKitCustomConnectButton } from "./scaffold-eth";
+import ConnectAndSiweButton from "./auth/ConnectAndSiweButton";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
+const navigation = [
+  { name: "Product", href: "#" },
+  { name: "Features", href: "#" },
+  { name: "Marketplace", href: "#" },
+  { name: "Company", href: "#" },
+];
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,16 +34,15 @@ const Header = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
+        <div className="hidden lg:flex lg:gap-x-12">
+          {navigation.map(item => (
+            <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+              {item.name}
+            </Link>
+          ))}
+        </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <RainbowKitCustomConnectButton />
-          {/* <FaucetButton /> */}
-          {/*
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                Log in <span aria-hidden="true">&rarr;</span>
-              </Link>
-          */}
-          {/* <div className="navbar-end flex-grow mr-4"> */}
-          {/* </div> */}
+          <ConnectAndSiweButton />
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -58,19 +64,19 @@ const Header = () => {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              {/*
-              <div className="py-6">
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
+              <div className="space-y-2 py-6">
+                {navigation.map(item => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
               </div>
-			  */}
-              <div className="navbar-end flex-grow mr-4">
-                <RainbowKitCustomConnectButton />
-                <FaucetButton />
+              <div>
+                <ConnectAndSiweButton />
               </div>
             </div>
           </div>
@@ -81,3 +87,4 @@ const Header = () => {
 };
 
 export default Header;
+
