@@ -1,7 +1,7 @@
 import { ICrudService } from "./types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
+type HttpMethod = "GET" | "POST" | "PATCH" | "DELETE";
 
 export const CrudRouteHandler = async <T>(
   request: NextApiRequest,
@@ -31,7 +31,7 @@ export const CrudRouteHandler = async <T>(
     return response.status(201).json(createResponse);
   }
 
-  if ((request.method as HttpMethod) === "PUT") {
+  if ((request.method as HttpMethod) === "PATCH") {
     const data = request.body as T;
     const updateResponse = await service.update(id, data);
     return response.status(200).json(updateResponse);
