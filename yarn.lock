@@ -1991,6 +1991,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@se-2/nextjs@workspace:packages/nextjs"
   dependencies:
+    "@airstack/airstack-react": ^0.3.3
     "@ethersproject/networks": ^5.7.1
     "@ethersproject/web": ^5.7.1
     "@headlessui/react": ^1.7.15
@@ -12387,7 +12388,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
-    "@airstack/airstack-react": ^0.3.3
     "@unlock-protocol/contracts": ^0.0.22
     "@unlock-protocol/networks": ^0.0.15
     "@unlock-protocol/paywall": ^0.6.4
