@@ -5,7 +5,7 @@ const EventsCarousel = () => {
   return (
     <div className="flex flex-col w-full items-center rounded-md">
       <div className="w-full flex justify-center">
-        <h3 className="text-2xl py-4 font-bold text-white">Events</h3>
+        <h2 className="text-3xl py-4 font-bold text-slate-900">Events</h2>
       </div>
       <div className="carousel carousel-center px-4 space-x-8 rounded-box w-full h-full">
         {eventsArray.map(event => (
@@ -28,7 +28,7 @@ const EventsCarousel = () => {
                     <Link href="/team/join">
                       <button
                         type="button"
-                        className="rounded-lg bg-red-600 px-6 py-2 text-base font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-red-500 disabled:bg-red-600/40"
+                        className="rounded-lg bg-indigo-700 px-6 py-2 text-base font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 disabled:bg-indigo-700/40"
                       >
                         Join
                       </button>
@@ -38,7 +38,7 @@ const EventsCarousel = () => {
                     <Link href="/team/create">
                       <button
                         type="button"
-                        className="rounded-lg bg-red-600 px-6 py-2 text-base font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-red-500 disabled:bg-red-600/40"
+                        className="rounded-lg bg-indigo-700 px-6 py-2 text-base font-semibold text-white ring-1 ring-inset ring-gray-300 hover:bg-indigo-500 disabled:bg-indigo-700/40"
                       >
                         Create
                       </button>
