@@ -21,6 +21,8 @@
     "@prisma/client": "4.16.1",
     "@rainbow-me/rainbowkit": "^0.11.0",
     "@uniswap/sdk": "^3.0.3",
+    "@unlock-protocol/contracts": "^0.0.22",
+    "@xmtp/xmtp-js": "^9.1.7",
     "daisyui": "^2.31.0",
     "ethers": "^5.0.0",
     "next": "^13.1.6",
