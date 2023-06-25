@@ -1,21 +1,16 @@
-import { useState } from "react";
-import { ETHTokyoQuery, ETHLisbonQuery, ScalingEthereumQuery } from "~~/queries";
-import React, { useEffect } from 'react';
-import { useQuery, fetchQuery } from "@airstack/airstack-react";
+import React from "react";
+import { useQuery } from "@airstack/airstack-react";
+import { ETHTokyoQuery } from "~~/queries";
 
-fetchQuery(ETHTokyoQuery, {}).then(console.log);
 export const Airstack = () => {
-    
-  
- // console.log(ETHTokyoQuery, useQuery);
-    //const { data, loading, error } = useQuery(ETHTokyoQuery, {});
-    //const [fetch, { data, loading, error }] = useLazyQuery(ETHTokyoQuery);
-    
-  return(
+  const { data, loading, error } = useQuery(ETHTokyoQuery, {});
+  console.log(ETHTokyoQuery, data, loading, error);
+
+  return (
     <div>
-      
-      
-   
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
+      {data && <div>Data: {JSON.stringify(data)}</div>}
     </div>
-    );
-}
+  );
+};
