@@ -1,12 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import type { NextPage } from "next";
-import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = () => {
   return (
     <>
-      <MetaHeader />
       <div className="relative isolate bg-white h-[calc(100vh-56px)]">
         <svg
           className="absolute h-[calc(100vh-56px)] inset-x-0 top-0 -z-10 w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
