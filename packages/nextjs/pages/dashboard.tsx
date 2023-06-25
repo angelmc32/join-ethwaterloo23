@@ -4,6 +4,9 @@ import { User } from "@prisma/client";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useSession } from "next-auth/react";
 import useSWR from "swr";
+import Inbox from "~~/components/dashboard/Inbox";
+import Profile from "~~/components/dashboard/Profile";
+import Settings from "~~/components/dashboard/Settings";
 import EventsCarousel from "~~/components/dashboard/events/EventsCarousel";
 import Signup from "~~/components/dashboard/index";
 
@@ -40,12 +43,18 @@ const Dashboard = ({ data: users }: InferGetServerSidePropsType<typeof getServer
   } else
     return (
       <div className="grid grid-cols-5 grid-rows-5 gap-4 w-full h-[calc(100vh-56px)] rounded-lg">
-        <div className="col-span-2 row-span-5 bg-slate-300 rounded-md"></div>
+        <div className="col-span-2 row-span-5 bg-slate-300 rounded-md">
+          <Profile />
+        </div>
         <div className="col-span-3 row-span-3 col-start-3 bg-red-600/90 rounded-md">
           <EventsCarousel />
         </div>
-        <div className="col-span-2 row-span-2 col-start-3 row-start-4 bg-blue-700 rounded-md"></div>
-        <div className="row-span-2 col-start-5 row-start-4 bg-emerald-600 rounded-md"></div>
+        <div className="col-span-2 row-span-2 col-start-3 row-start-4 bg-blue-700 rounded-md">
+          <Inbox />
+        </div>
+        <div className="row-span-2 col-start-5 row-start-4 bg-emerald-600 rounded-md">
+          <Settings />
+        </div>
       </div>
       // <div className="container pt-12 min-h-[calc(100vh-56px)] text-center flex justify-center">
       //   <h2 className="text-4xl font-medium">Dashboard</h2>

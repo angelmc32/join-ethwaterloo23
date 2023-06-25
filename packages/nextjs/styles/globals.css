@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -9,6 +11,7 @@
 
 body {
   min-height: 100vh;
+  font-family: "Londrina Solid";
 }
 
 h1,
@@ -21,12 +24,4 @@ h4 {
 
 p {
   margin: 1rem 0;
-}
-
-.btn {
-  @apply shadow-md;
-}
-
-.btn.btn-ghost {
-  @apply shadow-none;
 }

@@ -6,10 +6,10 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Profile", href: "/profile" },
+  { name: "Events", href: "/events" },
+  { name: "Teams", href: "/teams" },
+  { name: "Settings", href: "/settings" },
 ];
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
       <nav className="h-[56px] mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+            <span className="sr-only">Join!</span>
             <Image className="h-8 w-auto" src="/logo.svg" alt="" height={40} width={40} />
           </Link>
         </div>
@@ -36,7 +36,7 @@ const Header = () => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map(item => (
-            <Link key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+            <Link key={item.name} href={item.href} className="text-lg font-semibold leading-6 text-gray-900">
               {item.name}
             </Link>
           ))}
@@ -50,7 +50,7 @@ const Header = () => {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-3 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">Join!</span>
               <Image className="h-8 w-auto" src="/logo.svg" height={40} width={40} alt="" />
             </Link>
             <button
