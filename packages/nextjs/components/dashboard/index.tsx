@@ -1,13 +1,11 @@
 import { useCallback, useState } from "react";
-import { NextPage } from "next";
-import InterestsStep from "~~/components/InterestsStep";
-import RoleStep from "~~/components/RoleStep";
-import SignupStepper from "~~/components/SignupStepper";
-import SkillsStep from "~~/components/SkillsStep";
+import InterestsStep from "./InterestsStep";
+import RoleStep from "./RoleStep";
+import SkillsStep from "./SkillsStep";
 
 const steps = [{ name: "Role" }, { name: "Skills" }, { name: "Interests" }];
 
-const Signup: NextPage = () => {
+const Signup = () => {
   const [step, setStep] = useState(0);
   const [role, setRole] = useState<string>("");
   const [skills, setSkills] = useState<string[]>([]);
@@ -34,9 +32,6 @@ const Signup: NextPage = () => {
   );
 
   const prevStep = useCallback(() => {
-    console.log(step);
-    console.log("hola");
-
     if (step > 0) setStep(v => v - 1);
     else return;
   }, [step]);
@@ -47,21 +42,25 @@ const Signup: NextPage = () => {
   };
 
   return (
-    <>
-      <SignupStepper currentStep={step} steps={steps} />
+    <div className="z-10 xl:w-4/5">
+      {/* <SignupStepper currentStep={step} steps={steps} />
 
-      <pre>{JSON.stringify({ role, skills, interests })}</pre>
+      <pre>{JSON.stringify({ role, skills, interests })}</pre> */}
 
       <div>
         {step == 0 ? (
           <RoleStep actions={actions} />
         ) : step == 1 ? (
-          <SkillsStep actions={actions} />
+          <div className="pt-20">
+            <SkillsStep actions={actions} />
+          </div>
         ) : (
-          <InterestsStep actions={actions} />
+          <div className="pt-20">
+            <InterestsStep actions={actions} role={role} skills={skills} interests={interests} />
+          </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
