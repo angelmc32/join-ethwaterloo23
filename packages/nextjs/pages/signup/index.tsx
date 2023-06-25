@@ -13,27 +13,33 @@ const Signup: NextPage = () => {
   const [skills, setSkills] = useState<string[]>([]);
   const [interests, setInterests] = useState<string[]>([]);
 
-  const nextStep = useCallback(({ type, payload }: { type: "role" | "skills" | "interests"; payload: any }) => {
-    switch (type) {
-      case "role":
-        setRole(payload);
-        break;
-      case "skills":
-        setSkills(payload);
-        break;
-      case "interests":
-        setInterests(payload);
-        break;
-    }
+  const nextStep = useCallback(
+    ({ type, payload }: { type: "role" | "skills" | "interests"; payload: any }) => {
+      switch (type) {
+        case "role":
+          setRole(payload);
+          break;
+        case "skills":
+          setSkills(payload);
+          break;
+        case "interests":
+          setInterests(payload);
+          break;
+      }
 
-    if (step < steps.length - 1) setStep(v => v + 1);
-    else return;
-  }, []);
+      if (step < steps.length - 1) setStep(v => v + 1);
+      else return;
+    },
+    [step],
+  );
 
   const prevStep = useCallback(() => {
+    console.log(step);
+    console.log("hola");
+
     if (step > 0) setStep(v => v - 1);
     else return;
-  }, []);
+  }, [step]);
 
   const actions = {
     nextStep,

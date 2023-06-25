@@ -18,6 +18,7 @@ const SkillsStep = ({ actions }: { actions: any }) => {
       setSelection([...newSelection]);
     }
   };
+
   return (
     <>
       <h1>What can you do?</h1>
